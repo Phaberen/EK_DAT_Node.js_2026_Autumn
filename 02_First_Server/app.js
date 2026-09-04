@@ -54,7 +54,7 @@ app.get('/beers/:beerType/:amount', (req, res) => {
 
 // /bars/forgottenItems?myGirlfriend=mygirlfriend&myMom=myMom&myHorn=myHorn
 app.get('/bars/:forgottenItems', (req, res) => {
-    res.send({ data: `You forgot your ${req.query.forgottenItem[2]} at the bar`});
+    res.send({ data: `You forgot your ${req.query.forgottenItem} at the bar`});
 
 });
 
@@ -66,7 +66,7 @@ const beers = {
     pilsner: 'pilsner'
 }
 
-const forgottenItems = {
+const forgottenItem = {
     myGirlfriend: 'my girlfriend',
     myMom: 'my Mom',
     myHorn: 'my horn',
