@@ -2,8 +2,7 @@ const express = require('express');
 const app = express();
 
 // In-memory "database": an array of objects.
-// Array because /animals must return a list, and an array keeps the order.
-// Each animal has an id; everything else is free-form (no fixed schema).
+// Array because /animals must return a list, main action is GET
 const animals = [
     { id: 1, name: "Bald Eagle", type: "bird", canFly: true },
     { id: 2, name: "Elephant", type: "mammal", weightKg: 6000 },
