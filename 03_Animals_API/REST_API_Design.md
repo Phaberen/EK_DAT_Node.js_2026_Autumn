@@ -7,3 +7,4 @@ REST API CONVENTIONS
 
 GET /animals
 GET /animals/{id}
+

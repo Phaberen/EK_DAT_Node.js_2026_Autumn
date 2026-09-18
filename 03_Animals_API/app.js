@@ -1,6 +1,8 @@
 const express = require('express'); // imports express
 const app = express(); // instantiates express
 
+app.use(express.json());
+
 // In-memory "database": an array of objects.
 // Array because /animals must return a list, main action is GET
 const animals = [
@@ -31,6 +33,52 @@ app.get('/animals/:id', (req, res) => {
     res.send({ data: animal });
 });
 
+console.log({ data: undefined });
+
+app.post("/animals", (req, res) => {
+    const providedAnimal = req.body;
+
+    providedAnimal.id = nextId++;
+
+    animals.push(providedAnimal);
+
+    res.send({ data: providedAnimal });
+});
+
+app.delete("/animals/:id", (req, res) => {
+    const providedId = Number(req.params.id);
+    const foundAnimal = animals.findIndex((animal)) => animal.id === providedId);
+
+    if (foundanimalIndex === -1) {
+        res.status(404).send({ errorMessage: `No animal found by id ${providedId}` })
+    }
+
+    animals.splice(foundanimalIndex, 1);
+
+    res.send({});
+});
+
+app.patch("/animals/:id", (req, res) => {
+    const providedId = Number(req.params.id);
+    const foundAnimal = animals.findIndex((animal)) => animal.id === providedId);
+
+    if (foundanimalIndex === -1) {
+        res.status(404).send({ errorMessage: `No animal found by id ${providedId}` })
+    }
+
+    const providedAnimal = req.body;
+    
+
+)};
+
+
+// post-fix
+// console.log(value++);
+
+// ++ increments before or after depending on placement.
+
+// pre-fix
+// consolge.log(++value);
 
 // 2xx OK
 // 3xx Redirect
@@ -41,3 +89,11 @@ const PORT = 8080;
 app.listen(PORT, () => {
     console.log("Server is running on port", PORT);
 });
+
+
+
+
+
+// overvejelser
+// læsbar kode med flere variabler eller mindre memory load til garbage collector 
+// uden additional variables
