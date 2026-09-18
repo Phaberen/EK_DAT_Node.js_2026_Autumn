@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- <link rel="stylesheet" href="frontpage.css"> -->
+    <style>
+        /* 2. CSS in style tag */
+        h1 {
+            color: darkred;
+        }
+    </style>
+    <title>Torture Methods</title>
+</head>
+<!-- 1. inline-CSS -->
+<body style="background-color: red;">
+    <h1>Welcome to the goriest website on the internet!!!</h1>
+    
+    <h3 id="under-construction-headline">The website is under construction...</h3>
+
+    <div>
+        <h4>Counter. People who have been killed by visiting this website.</h4>
+        <h3 id="counter"></h3>
+    </div>
+
+    <!-- <script src="frontpage.js"></script> -->
+    <script>
+        // task make a GET request to /api/counter, console.log the value
+        // task update the counter h3 tag
+        fetch('/api/counter')
+        .then((response) => response.json())
+        .then((result) => {
+            const counterH3 = document.getElementById('counter');
+            counterH3.textContent = result.data; 
+        });
+        
+    </script>
+</body>
+</html>
