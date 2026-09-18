@@ -85,8 +85,16 @@ app.patch("/animals/:id", (req, res) => {
 // 4xx Client-side error
 // 5xx Server-side error
 
+if (undefined) {
+    console.log("Do i get to this point???");
+}
+
 const PORT = 8080;
-app.listen(PORT, () => {
+app.listen(PORT, (error) => {
+    if (error) {
+        console.log("Error running the server", error);
+        return;
+    }
     console.log("Server is running on port", PORT);
 });
 

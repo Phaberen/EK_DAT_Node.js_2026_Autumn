@@ -1,11 +1,19 @@
 const express = require('express');
 const app = express();
 
+app.use(express.json()); // middleware to parse JSON bodies - remember for future, important!
+
 // const app = require('express')();
 
 // task Create a route for the endpoint / which returns a greeting
 app.get('/', (req, res) => {
-    res.send({ data: "Welcome to the API 0.0.1" });
+    res.sendFile(__dirname + '/index.html'); // trailing slash / in /index.html important, otherwise it will not work.
+});
+
+console.log(__dirname); // the directory of where you're running node from, not the file location of the script.
+
+app.get('/', (req, res) => {
+    res.sendFile(__dirname + '/xss.html');
 });
 
 // callback function: a function reference provided as an argument with the posibility (perhaps) of being called
@@ -35,7 +43,17 @@ app.get('/bars/forgottenItems', (req, res) => {
     res.send({ data: req.query });
 });
 
+app.post('/dictators', (req, res) => {
+    console.log(req.body);
+    res.send({ data: req.body });
 
+})
+
+app.patch('/dictators/:name', (req, res) => {
+
+    res.send({ data: `You have turned a dictator - ${req.params.name} - benevolent for life`});
+
+});
 
 
 app.listen(8080);
