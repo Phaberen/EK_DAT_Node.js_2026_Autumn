@@ -5,14 +5,13 @@ app.use(express.json()); // middleware to parse JSON bodies - remember for futur
 
 // const app = require('express')();
 
-// task Create a route for the endpoint / which returns a greeting
+app.use(express.json());
+
 app.get('/', (req, res) => {
-    res.sendFile(__dirname + '/index.html'); // trailing slash / in /index.html important, otherwise it will not work.
+    res.sendFile(__dirname + '/index.html');
 });
 
-console.log(__dirname); // the directory of where you're running node from, not the file location of the script.
-
-app.get('/', (req, res) => {
+app.get('/xss', (req, res) => {
     res.sendFile(__dirname + '/xss.html');
 });
 
@@ -20,7 +19,7 @@ app.get('/', (req, res) => {
 
 // functions as first-class citizens = I can do with functions what I can do with other data types
 
-        // endpoint   // callback function
+// endpoint   // callback function
 app.get('/blablabla', (req, res) => {
     res.send({ data: "They talk a lot but nothing is said" });
 });
@@ -46,13 +45,10 @@ app.get('/bars/forgottenItems', (req, res) => {
 app.post('/dictators', (req, res) => {
     console.log(req.body);
     res.send({ data: req.body });
-
-})
+});
 
 app.patch('/dictators/:name', (req, res) => {
-
-    res.send({ data: `You have turned a dictator - ${req.params.name} - benevolent for life`});
-
+    res.send({ data: `You have turned the great dictator - ${req.params.name} - benevolent for life` });
 });
 
 
