@@ -4,6 +4,13 @@
 const numberOne = "1.10";
 const numberTwo = "2.30";
 
+const result1 = parseFloat(numberOne) + parseFloat(numberTwo)
+
+console.log(typeof (result1));
+
+console.log((parseFloat(numberOne) + parseFloat(numberTwo)).toFixed(2));
+console.log(typeof (result1.toFixed(2)));
+
 // add those two numbers and show the result
 // you cannot touch line 1 neither line 2
 
@@ -32,6 +39,8 @@ const three = 98;
 
 const letters = "abc";
 // Get me the character "c"
+
+console.log(letters.Po(3));
 
 
 

@@ -29,6 +29,7 @@ console.log(newYearVersionThree);
 console.log(parseInt("234324abc2"));
 console.log(Number("234324abc2"));
 
+
 // Add the year plus the increment
 // The result should be 2026
 // You cannot touch the first or the second line
