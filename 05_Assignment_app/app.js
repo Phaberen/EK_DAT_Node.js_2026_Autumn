@@ -11,11 +11,11 @@
 
       res.send({
           data: {
-              months: Math.floor(milliseconds / 1000 / 60 / 60 / 24 / 30),
-              weeks: Math.floor(milliseconds / 1000 / 60 / 60 / 24 / 7),
-              days: Math.floor(milliseconds / 1000 / 60 / 60 / 24),
-              hours: Math.floor(milliseconds / 1000 / 60 / 60),
-              minutes: Math.floor(milliseconds / 1000 / 60),
+              months: Math.trunc(milliseconds / 1000 / 60 / 60 / 24 / 30),
+              weeks: Math.trunc(milliseconds / 1000 / 60 / 60 / 24 / 7),
+              days: Math.trunc(milliseconds / 1000 / 60 / 60 / 24),
+              hours: Math.trunc(milliseconds / 1000 / 60 / 60),
+              minutes: Math.trunc(milliseconds / 1000 / 60),
               milliseconds: milliseconds
           }
       });

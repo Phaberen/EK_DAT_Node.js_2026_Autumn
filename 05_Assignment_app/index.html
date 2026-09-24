@@ -68,8 +68,15 @@
                 .then((response) => response.json())
                 .then((result) => {
                     const late = result.data;
+                    const message = document.getElementById('message');
                     if (late.milliseconds < 0) {
-                        document.getElementById('message').textContent = "You are still early.. but beware..";
+                        message.textContent = "You are still early.. but beware..";
+                    } else if (late.minutes < 60 * 24 * 7) {
+                        message.textContent = "Just walk in confidently.";
+                    } else if (late.minutes < 60 * 24 * 14) {
+                        message.textContent = "The teacher has noticed. The teacher always notices.";
+                    } else {
+                        message.textContent = "Better start writing your memoir.";
                     }
                     document.getElementById('months').textContent = late.months;
                     document.getElementById('weeks').textContent = late.weeks;
