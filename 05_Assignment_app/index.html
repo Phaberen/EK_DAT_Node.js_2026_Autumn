@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Am I Late?</title>
+    <style>
+        body {
+            font-family: sans-serif;
+            background-color: #111;
+            color: #eee;
+            text-align: center;
+            margin-top: 60px;
+        }
+
+        select,
+        button {
+            font-size: 18px;
+            padding: 8px;
+        }
+    </style>
+</head>
+
+<body>
+    <h1>How late are you for the Node class?</h1>
+    <p>Every Friday at 08:30.</p>
+
+    <select id="date">
+        <option value="2026-08-28">28 August</option>
+        <option value="2026-09-04">4 September</option>
+        <option value="2026-09-11">11 September</option>
+        <option value="2026-09-18">18 September</option>
+        <option value="2026-09-25">25 September</option>
+        <option value="2026-10-02">2 October</option>
+        <option value="2026-10-09">9 October</option>
+        <option value="2026-10-16">16 October</option>
+        <option value="2026-10-23">23 October</option>
+        <option value="2026-10-30">30 October</option>
+        <option value="2026-11-06">6 November</option>
+        <option value="2026-11-13">13 November</option>
+        <option value="2026-11-20">20 November</option>
+        <option value="2026-11-27">27 November</option>
+        <option value="2026-12-04">4 December</option>
+        <option value="2026-12-11">11 December</option>
+        <option value="2026-12-18">18 December</option>
+    </select>
+    <button onclick="checkLateness()">Check</button>
+
+    <p>Months: <span id="months"></span></p>
+    <p>Weeks: <span id="weeks"></span></p>
+    <p>Days: <span id="days"></span></p>
+    <p>Hours: <span id="hours"></span></p>
+    <p>Minutes: <span id="minutes"></span></p>
+    <p>Milliseconds: <span id="milliseconds"></span></p>
+
+    <script>
+        function checkLateness() {
+            const date = document.getElementById('date').value;
+
+            fetch('/api/late/' + date)
+                .then((response) => response.json())
+                .then((result) => {
+                    const late = result.data;
+
+                    document.getElementById('months').textContent = late.months;
+                    document.getElementById('weeks').textContent = late.weeks;
+                    document.getElementById('days').textContent = late.days;
+                    document.getElementById('hours').textContent = late.hours;
+                    document.getElementById('minutes').textContent = late.minutes;
+                    document.getElementById('milliseconds').textContent = late.milliseconds;
+                });
+        }
+    </script>
+</body>
+
+</html>

@@ -1,39 +1,29 @@
-const express = require('express');
-const app = express();
+  const express = require('express');
+  const app = express();
 
-// console.log(new Date());
-// 2026-09-18T08:03:15.983Z  // UTC
+  app.get('/', (req, res) => {
+      res.sendFile(__dirname + '/index.html');
+  });
 
-// console.log(Date());
-// Fri Sep 18 2026 10:07:01 GMT+0200 (Central European Summer Time)
-// Local time
+  app.get('/api/late/:date', (req, res) => {
+      const classTime = new Date(req.params.date + 'T08:30:00+02:00');
+      const milliseconds = new Date() - classTime;
 
-// console.log(Date.now());
-// 1789718995151
-// Unix Epoch Time
-// Seconds since Jan. 1st 1970
+      res.send({
+          data: {
+              months: Math.floor(milliseconds / 1000 / 60 / 60 / 24 / 30),
+              weeks: Math.floor(milliseconds / 1000 / 60 / 60 / 24 / 7),
+              days: Math.floor(milliseconds / 1000 / 60 / 60 / 24),
+              hours: Math.floor(milliseconds / 1000 / 60 / 60),
+              minutes: Math.floor(milliseconds / 1000 / 60),
+              milliseconds: milliseconds
+          }
+      });
+  });
 
-const months = [
-    'January', 'February', 'March', 'April', 'May', 'June',
-    'July', 'August', 'September', 'October', 'November', 'December'
-];
+  const PORT = process.env.PORT || 8080;
+  app.listen(PORT, () => {
+      console.log("Server is running on port", PORT);
+  });
 
-// task create a route that serves /months which returns the current month
-app.get('/months/v1', (req, res) => {
-    const currentMonth = months[new Date().getMonth()];
-
-    res.send({ data: currentMonth });
-});
-
-app.get('/', (req, res) => {
-    res.send({ data: "hello from Vercel" });
-});
-
-
-app.listen(8080, (error) => {
-    if (error) {
-        console.log(error);
-        return;
-    }
-    console.log("Server is running on port", 8080);
-});
+  module.exports = app;
