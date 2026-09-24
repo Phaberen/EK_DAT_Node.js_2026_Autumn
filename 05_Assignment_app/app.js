@@ -7,7 +7,7 @@
 
   app.get('/api/late/:date', (req, res) => {
       const classTime = new Date(req.params.date + 'T08:30:00+02:00');
-      const milliseconds = (new Date() - classTime);
+      const milliseconds = new Date() - classTime;
 
       res.send({
           data: {
