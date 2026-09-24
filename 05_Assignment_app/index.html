@@ -19,12 +19,17 @@
             font-size: 18px;
             padding: 8px;
         }
+
+        #message {
+            font-size: 22px;
+            margin-top: 40px;
+        }
     </style>
 </head>
 
 <body>
     <h1>How late are you for the Node class?</h1>
-    <p>Every Friday at 08:30.</p>
+    <p>Node classes occur every Friday at 08:30.</p>
 
     <select id="date">
         <option value="2026-08-28">28 August</option>
@@ -54,6 +59,7 @@
     <p>Minutes: <span id="minutes"></span></p>
     <p>Milliseconds: <span id="milliseconds"></span></p>
 
+    <p id="message"></p>
     <script>
         function checkLateness() {
             const date = document.getElementById('date').value;
@@ -62,7 +68,9 @@
                 .then((response) => response.json())
                 .then((result) => {
                     const late = result.data;
-
+                    if (late.milliseconds < 0) {
+                        document.getElementById('message').textContent = "You are still early.. but beware..";
+                    }
                     document.getElementById('months').textContent = late.months;
                     document.getElementById('weeks').textContent = late.weeks;
                     document.getElementById('days').textContent = late.days;
